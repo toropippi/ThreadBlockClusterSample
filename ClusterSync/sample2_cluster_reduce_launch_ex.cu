@@ -55,7 +55,7 @@ void cluster_reduce(const float* __restrict__ in,
 
     // 各 block の部分和 (sdata[0]) を rank 0 block の cluster_sum に加算
     if (tid == 0) {
-        float* remote = cluster.map_shared_rank(&cluster_sum, /*rank=*/0);
+        float* remote = cluster.map_shared_rank(&cluster_sum, 0);
         atomicAdd(remote, sdata[0]);
     }
 
