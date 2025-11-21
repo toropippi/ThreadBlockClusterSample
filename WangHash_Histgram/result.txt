@@ -1,0 +1,32 @@
+>cluster_wang_hash_histogram.exe
+Wang-hash histogram benchmark with Thread Block Cluster (RTX 5090)
+  BINS_PER_BLOCK      = 16384
+  BLOCKS_PER_CLUSTER  = 16
+  BINS_TOTAL          = 262144
+  NUM_CLUSTERS        = 10
+  THREADS_PER_BLOCK   = 128
+  SAMPLES_PER_THREAD  = 98304
+  NUM_LOOPS           = 3 (first launch is warm-up)
+
+Device: NVIDIA GeForce RTX 5090
+  Compute Capability        : 12.0
+  Shared mem per SM (bytes) : 102400
+  Shared mem per block (max, opt-in bytes): 101376
+
+Launch configuration:
+  blocks_per_grid   = 160
+  threads_per_block = 128
+  total_threads     = 20480
+  total_samples     = 2013265920
+
+Running benchmarks...
+
+Results (average over 3 runs, first run is warm-up):
+  Global-only (one atomic per hash) : 30.777 ms
+  TBC+DSMEM (local DSMEM hist)      : 195.254 ms
+
+Histogram total counts:
+  sum(global)  = 2013265920
+  sum(cluster) = 2013265920
+  expected     = 2013265920
+  Output check: OK (no mismatch, totals match)
